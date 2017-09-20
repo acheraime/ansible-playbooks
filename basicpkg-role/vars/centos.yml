@@ -1,0 +1,14 @@
+---
+# CentOs/RedHat package manager
+package_mgr: yum
+
+# NTP daemon
+ntp_daemon: ntpd
+
+# Common packages
+basicpkg_common:
+    - epel-release
+    - git
+    - vim
+    - ntp
+    - sudo

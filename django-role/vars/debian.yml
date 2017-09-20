@@ -1,0 +1,14 @@
+---
+
+# Debian specific variables 
+# Package manager, package names and similar stuff
+
+package_mgr: apt
+
+# Django pre install dependencies
+django_dependencies:
+  - python-dev
+  - python-setuptools
+  - python-pip
+  - libpq-dev
+  - python-psycopg2

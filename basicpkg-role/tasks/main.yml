@@ -1,0 +1,24 @@
+---
+# Dynamically include the vars from file located under vars directory
+# based on the host os family and version
+- name: Include OS specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution|lower }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution|lower }}.yml"
+    - "{{ ansible_os_family|lower }}.yml"
+    - "defaults.yml" 
+
+# Add debian repos list
+- name: Add debian source repos
+  apt_repository:
+    repo: deb http://http.debian.net/debian jessie-updates main
+    state: present
+  when: ( ansible_os_family|lower == 'debian')
+
+# Task to install the basic packages
+- name: Installation of basic packages
+  action: >
+    {{ package_mgr }} name={{ item }} state=present update_cache=yes
+  with_items: "{{ basicpkg_common }}"
+

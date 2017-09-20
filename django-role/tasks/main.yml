@@ -1,0 +1,28 @@
+---
+
+# Include OS specific variables dynamically
+- name: Include OS specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution|lower }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution|lower }}.yml"
+    - "{{ ansible_os_family|lower }}.yml"
+    - "defaults.yml"
+     
+# Django pre-installation dependencies
+- name: Install django dependencies
+  action: >
+    {{ package_mgr }} name={{ item }} state=installed update_cache=yes
+  with_items: "{{ django_dependencies }}"
+
+# Install virtual environment
+- name: Install Virtual Environment
+  pip:
+    name: virtualenv
+    state: latest
+
+# Create virtual environment and install Django
+- name: Install Django and other stuffs
+  pip:
+    requirements: files/requirements-00.txt
+    virtualenv: /usr/share/virtualenvs/djangodemo 

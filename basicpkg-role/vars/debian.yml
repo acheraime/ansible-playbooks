@@ -1,0 +1,15 @@
+---
+# Debian/Ubuntu package manager
+package_mgr: apt
+
+# NTP daemon
+ntp_daemon: ntp
+
+# Common packages
+basicpkg_common:
+    - git
+    - vim
+    - ntp
+    - sudo
+    - htop
+    - build-essential

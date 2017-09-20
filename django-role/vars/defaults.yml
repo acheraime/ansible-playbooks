@@ -1,0 +1,22 @@
+---
+# Django installation common variables
+
+django_version: 1.11
+
+venv_base_path: /usr/share/virtualenvs
+
+# Django settings.py related variable
+django_base_url: djangodemo 
+django_db_backend: postgresql
+django_db: django
+django_db_user: dbuser
+django_db_pass: dbPass
+django_db_host: localhost
+django_db_port: 5432
+django_static_root: ""
+django_media_root: ""
+django_secret_key: Z6GiC8nt25_*;s1D2W#F"6717_2YlD0e
+django_superuser: it_user
+django_superpass: pass1234
+
+
